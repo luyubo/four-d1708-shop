@@ -24,8 +24,8 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("shop_orderdetail")
-public class ShopOrderdetail implements Serializable {
+@TableName("shop_cartdetail")
+public class ShopCartdetail implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -36,14 +36,14 @@ public class ShopOrderdetail implements Serializable {
     private Integer id;
 
     /**
-     * 订单id
+     * 购物车表
      */
-    private Integer order_id;
+    private Integer cartId;
 
     /**
      * sku的id
      */
-    private Integer sku_id;
+    private Integer skuid;
 
     /**
      * 标题
@@ -65,10 +65,13 @@ public class ShopOrderdetail implements Serializable {
      */
     private Integer stock_count;
 
+    /**
+     * 图片
+     */
     private String image;
 
     /**
-     * 状态 0正常 1删除
+     * 状态
      */
     private Integer state;
 
@@ -97,9 +100,9 @@ public class ShopOrderdetail implements Serializable {
     private Integer amount;
 
     /**
-     * 地址表的id
+     * 选中的地址
      */
-    private Integer addr_id;
+    private Integer addrId;
 
 
 }
