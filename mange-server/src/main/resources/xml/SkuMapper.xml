@@ -3,7 +3,7 @@
 <mapper namespace="com.four.d1708.shop.mangeserver.mapper.SkuMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.Sku">
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopSku">
         <id column="id" property="id" />
         <result column="title" property="title" />
         <result column="sell_point" property="sell_point" />
