@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 商品类目
+ * 
  * </p>
  *
  * @author luyubo
@@ -19,26 +19,46 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("shop_category")
-public class ShopCategory implements Serializable {
+@TableName("shop_addr")
+public class ShopAddr implements Serializable {
 
     private static final long serialVersionUID=1L;
 
     /**
-     * 类目ID
+     * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 父类目ID=0时，代表的是一级的类目
+     * 用户id
      */
-    private Integer parent_id;
+    private Integer uid;
 
     /**
-     * 类目名称
+     * 省id
      */
-    private String name;
+    private Integer province_id;
+
+    /**
+     * 市id
+     */
+    private Integer city_id;
+
+    /**
+     * 县id
+     */
+    private Integer country_id;
+
+    /**
+     * 详细地址
+     */
+    private String address;
+
+    /**
+     * 状态 0正常 1删除
+     */
+    private Integer state;
 
 
 }

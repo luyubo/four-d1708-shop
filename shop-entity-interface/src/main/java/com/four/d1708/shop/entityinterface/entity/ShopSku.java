@@ -1,23 +1,22 @@
 package com.four.d1708.shop.entityinterface.entity;
 
+import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import java.time.LocalDateTime;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-
 /**
+ * <p>
+ * 商品表
+ * </p>
+ *
  * @author luyubo
- * @Title: ShopSku
- * @Package entity
- * @Description: 商品具体属性类
- * @date 2020/5/19/23:01
- * @Version 1.0
+ * @since 2020-05-29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -41,7 +40,7 @@ public class ShopSku implements Serializable {
     /**
      * 商品卖点
      */
-    private String sellPoint;
+    private String sell_point;
 
     /**
      * 商品价格，单位为：元
@@ -51,7 +50,7 @@ public class ShopSku implements Serializable {
     /**
      * 库存数量
      */
-    private Integer stockCount;
+    private Integer stock_count;
 
     /**
      * 商品图片
@@ -66,27 +65,27 @@ public class ShopSku implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private LocalDateTime create_time;
 
     /**
      * 更新时间
      */
-    private Date updateTime;
+    private LocalDateTime update_time;
 
     /**
      * spu的id
      */
-    private Integer spuId;
+    private Integer spu_id;
 
     /**
      * 商品属性
      */
-    private String specName;
+    private String spec_name;
 
     /**
      * 商品属性值
      */
-    private String optionName;
+    private String option_name;
 
 
 }

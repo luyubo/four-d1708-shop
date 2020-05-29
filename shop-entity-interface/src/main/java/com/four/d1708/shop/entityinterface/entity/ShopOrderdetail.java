@@ -21,46 +21,78 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("shop_cart")
-public class ShopCart implements Serializable {
+@TableName("shop_orderdetail")
+public class ShopOrderdetail implements Serializable {
 
     private static final long serialVersionUID=1L;
 
     /**
-     * 购物车主键id
+     * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 用户id
+     * 订单id
      */
-    private String uid;
+    private Integer order_id;
 
     /**
-     * 商品id(商品型号)
+     * sku的id
      */
-    private String skuid;
+    private Integer sku_id;
 
     /**
-     * 购买数量
+     * 标题
      */
-    private BigDecimal pnum;
+    private String title;
+
+    /**
+     * 卖点
+     */
+    private String sell_point;
+
+    /**
+     * 价格
+     */
+    private BigDecimal price;
+
+    /**
+     * 盘点
+     */
+    private String stock_count;
+
+    private String image;
+
+    /**
+     * 状态 0正常 1删除
+     */
+    private Integer state;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createtime;
+    private LocalDateTime create_time;
 
     /**
-     * 最后修改时间
+     * 修改时间
      */
-    private LocalDateTime updatetime;
+    private LocalDateTime update_time;
 
     /**
-     * 总价
+     * spu的id
      */
-    private BigDecimal sum_total;
+    private Integer spu_id;
+
+    /**
+     * 购买数量
+     */
+    private Integer amount;
+
+    /**
+     * 地址表的id
+     */
+    private Integer addr_id;
 
 
 }

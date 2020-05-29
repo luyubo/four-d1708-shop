@@ -1,21 +1,20 @@
 package com.four.d1708.shop.entityinterface.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-
 /**
+ * <p>
+ * 
+ * </p>
+ *
  * @author luyubo
- * @Title: ShopSpu
- * @Package entity
- * @Description: 商品实体类
- * @date 2020/5/19/23:01
- * @Version 1.0
+ * @since 2020-05-29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -34,22 +33,22 @@ public class ShopSpu implements Serializable {
     /**
      * SPU名字
      */
-    private String goodsName;
+    private String goods_name;
 
     /**
      * 是否上架
      */
-    private String isMarketable;
+    private String is_marketable;
 
     /**
      * 所属产品
      */
-    private Integer categoryId;
+    private Integer category_id;
 
     /**
      * 小图
      */
-    private String smallPic;
+    private String small_pic;
 
 
 }

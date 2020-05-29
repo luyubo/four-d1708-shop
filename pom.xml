@@ -8,6 +8,7 @@
         <module>eureka-server</module>
         <module>zuul-server</module>
         <module>shop-entity-interface</module>
+        <module>mange-server</module>
     </modules>
     <!--继承spring boot项目-->
     <parent>

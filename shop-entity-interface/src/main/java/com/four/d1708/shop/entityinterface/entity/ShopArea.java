@@ -1,21 +1,20 @@
 package com.four.d1708.shop.entityinterface.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-
 /**
+ * <p>
+ * 
+ * </p>
+ *
  * @author luyubo
- * @Title: ShopArea
- * @Package entity
- * @Description: 地址实体类
- * @date 2020/5/19/23:01
- * @Version 1.0
+ * @since 2020-05-29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -24,11 +23,13 @@ import java.io.Serializable;
 public class ShopArea implements Serializable {
 
     private static final long serialVersionUID=1L;
-    //地区主键id
+
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-    //地区名称
+
     private String name;
-    //地区父id
+
     private Integer pid;
+
+
 }

@@ -1,22 +1,21 @@
 package com.four.d1708.shop.entityinterface.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.time.LocalDate;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.Date;
-
 /**
+ * <p>
+ * 
+ * </p>
+ *
  * @author luyubo
- * @Title: ShopUser
- * @Package entity
- * @Description: 用户实体类
- * @date 2020/5/19/23:01
- * @Version 1.0
+ * @since 2020-05-29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -60,7 +59,7 @@ public class ShopUser implements Serializable {
     /**
      * 生日
      */
-    private Date birthday;
+    private LocalDate birthday;
 
     /**
      * 性别
@@ -75,12 +74,17 @@ public class ShopUser implements Serializable {
     /**
      * 头像
      */
-    private String userImage;
+    private String user_image;
 
     /**
      * 地址具体信息
      */
     private String address;
+
+    /**
+     * 会员状态 0普通会员 1大会员 2超级会员
+     */
+    private Integer member_state;
 
 
 }

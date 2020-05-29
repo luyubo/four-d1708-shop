@@ -1,23 +1,22 @@
 package com.four.d1708.shop.entityinterface.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.time.LocalDate;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-
 /**
+ * <p>
+ * 
+ * </p>
+ *
  * @author luyubo
- * @Title: ShopOrder
- * @Package entity
- * @Description: 订单实体类
- * @date 2020/5/19/23:01
- * @Version 1.0
+ * @since 2020-05-29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -46,7 +45,7 @@ public class ShopOrder implements Serializable {
     /**
      * 订单生成日期
      */
-    private Date createtime;
+    private LocalDate createtime;
 
     /**
      * 商品id
@@ -64,19 +63,9 @@ public class ShopOrder implements Serializable {
     private BigDecimal sum;
 
     /**
-     * 省id
+     * 0待支付 1已支付 2过期未支付
      */
-    private Integer provinceId;
-
-    /**
-     * 市id
-     */
-    private Integer cityId;
-
-    /**
-     * 县id
-     */
-    private Integer countryId;
+    private Integer state;
 
 
 }
