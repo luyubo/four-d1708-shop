@@ -43,12 +43,55 @@ public class ShopUserServiceImpl extends ServiceImpl<ShopUserMapper, ShopUser> i
      **/
     @Override
     public boolean updateUserStateByUid(Integer uid, Integer state) {
+        //1).根据用户主键id查询用户所有信息
         ShopUser shopUser = shopUserMapper.selectById(uid);
+        //2).修改用户的状态
         shopUser.setState(state);
+        //3).保存修改
         int i = shopUserMapper.updateById(shopUser);
+        //4).判断并返回值
         if(i>0){
             return true;
         }
         return false;
+    }
+
+    /**
+     * @Author luyubo
+     * @Description 修改用户的会员状态
+     * @Date  2020/5/29 17:37
+     * @Param [uid:用户主键id, member_state:会员状态]
+     * @return boolean
+     **/
+    @Override
+    public boolean updateUserMemberStateByUid(Integer uid, Integer member_state) {
+        //1).根据用户主键id查询用户所有信息
+        ShopUser shopUser = shopUserMapper.selectById(uid);
+        //2).修改用户的会员状态
+        shopUser.setMember_state(member_state);
+        //3).保存修改
+        int i = shopUserMapper.updateById(shopUser);
+        //4).判断并返回值
+        if(i>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateUserStateByUids(String uids) {
+        //1).字符创切割
+        String[] split = uids.split(",");
+        //2).遍历查询
+        for (String s : split) {
+            //3).通过id查询用户的数据
+            ShopUser shopUser = shopUserMapper.selectById(Integer.parseInt(s));
+            //4).修改状态
+            shopUser.setState(1);
+            //5).保存修改
+            shopUserMapper.updateById(shopUser);
+        }
+        //6).返回值
+        return true;
     }
 }

@@ -19,4 +19,8 @@ public interface IShopUserService extends IService<ShopUser> {
     IPage<ShopUserVo> findAll(Page page, ShopUserVo shopUserVo);
 
     boolean updateUserStateByUid(Integer uid, Integer state);
+
+    boolean updateUserMemberStateByUid(Integer uid, Integer member_state);
+
+    boolean updateUserStateByUids(String uids);
 }

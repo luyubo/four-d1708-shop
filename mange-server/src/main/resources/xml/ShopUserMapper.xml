@@ -33,7 +33,12 @@
         from
             shop_user su
         <if test="shopUserVo!=null">
-
+            /*用户名模糊查询*/
+            <where>
+                <if test="shopUserVo.name!=null and shopUserVo.name!=''">
+                    and su.name like concat('%',#{shopUserVo.name},'%')
+                </if>
+            </where>
         </if>
     </select>
 
