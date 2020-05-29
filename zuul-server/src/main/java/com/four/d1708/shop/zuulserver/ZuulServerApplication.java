@@ -3,6 +3,7 @@ package com.four.d1708.shop.zuulserver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.netflix.zuul.EnableZuulServer;
 
 /**
@@ -10,9 +11,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulServer;
  * @Title: ZuulServerApplication
  * @Package zuulserver
  * @Description: ZuulServer的网关服务
- * @date 2020/5/1821:21
+ * @date 2020/5/18/21:21
  */
-@EnableZuulServer
+@EnableZuulProxy
 @EnableEurekaClient
 @SpringBootApplication
 public class ZuulServerApplication {
