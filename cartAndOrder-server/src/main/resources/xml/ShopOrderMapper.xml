@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.four.d1780.shop.cartAndOrderServer.mapper.ShopOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopOrder">
+        <id column="oid" property="oid" />
+        <result column="uid" property="uid" />
+        <result column="address" property="address" />
+        <result column="createtime" property="createtime" />
+        <result column="skuid" property="skuid" />
+        <result column="pnum" property="pnum" />
+        <result column="province_id" property="provinceId" />
+        <result column="city_id" property="cityId" />
+        <result column="country_id" property="countryId" />
+    </resultMap>
+
+    <resultMap id="BaseResultMapVo" type="com.four.d1780.shop.cartAndOrderServer.entity.ShopOrderVo" extends="BaseResultMap" >
+        <result column="skid" property="skid" />
+        <result column="title" property="title" />
+        <result column="sell_point" property="sellPoint" />
+        <result column="price" property="price" />
+        <result column="image" property="image" />
+    </resultMap>
+
+
+    <select id="findAll" resultMap="BaseResultMapVo">
+        SELECT
+          a.*,
+          b.id skid,b.`title`,b.`sell_point`,b.image
+        FROM
+          shop_order a
+          LEFT JOIN shop_sku b
+            ON a.`skuid` = b.`id`
+        WHERE a.uid = #{uid}
+
+    </select>
+
+    <update id="updateByCreateTime">
+        update shop_order a set a.uid=10
+        <where>
+            <if test="date!=null and date !=''">
+                 a.createtime &lt;= #{date}
+            </if>
+        </where>
+    </update>
+</mapper>

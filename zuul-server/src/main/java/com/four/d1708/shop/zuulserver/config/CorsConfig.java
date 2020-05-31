@@ -1,5 +1,6 @@
 package com.four.d1708.shop.zuulserver.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -41,5 +42,7 @@ public class CorsConfig extends WebMvcConfigurerAdapter {
         corsConfiguration.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(source);
+
     }
+
 }
