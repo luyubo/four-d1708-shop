@@ -17,14 +17,34 @@
     </sql>
 
     <resultMap id="mapVo" type="com.four.d1708.shop.mangeserver.entity.ShopSpuVo" extends="BaseResultMap">
-
+        <result property="categoryName" column="categoryName"></result>
     </resultMap>
 
     <select id="findAll" resultMap="mapVo">
         select
-            spu.*
+            spu.*,category.name categoryName
         from
             shop_spu spu
+        left join
+            shop_category category
+        on
+            spu.category_id=category.id
+        <where>
+            <if test="shopSpuVo!=null">
+                <if test="shopSpuVo.goods_name!=null and shopSpuVo.goods_name!=''">
+                    and spu.goods_name like concat('',#{shopSpuVo.goods_name},'')
+                </if>
+                <if test="shopSpuVo.categoryId!=null">
+                    and category.id=#{shopSpuVo.categoryId}
+                </if>
+            </if>
+        </where>
+        group by
+            spu.id
+    </select>
+
+    <select id="findSpuBySpuId" resultMap="mapVo">
+        select * from shop_spu where shop_spu.id=#{spuId}
     </select>
 
 </mapper>

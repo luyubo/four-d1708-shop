@@ -13,5 +13,6 @@ import lombok.Data;
  */
 @Data
 public class ShopSpuVo extends ShopSpu {
-
+    private String categoryName;
+    private Integer categoryId;
 }

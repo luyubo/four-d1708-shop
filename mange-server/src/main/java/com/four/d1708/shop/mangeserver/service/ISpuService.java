@@ -17,4 +17,10 @@ import com.four.d1708.shop.mangeserver.entity.ShopSpuVo;
 public interface ISpuService extends IService<ShopSpu> {
 
     IPage<ShopSpuVo> findAll(Page page, ShopSpuVo shopSpuVo);
+
+    boolean deleteBySpuId(Integer spuId);
+
+    ShopSpuVo findSpuBySpuId(Integer spuId);
+
+    boolean updateSpuIsMarketableByspuIds(String spuIds);
 }

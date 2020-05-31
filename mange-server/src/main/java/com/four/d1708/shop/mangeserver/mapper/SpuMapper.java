@@ -17,4 +17,6 @@ import com.four.d1708.shop.mangeserver.entity.ShopSpuVo;
 public interface SpuMapper extends BaseMapper<ShopSpu> {
 
     IPage<ShopSpuVo> findAll(Page page, ShopSpuVo shopSpuVo);
+
+    ShopSpuVo findSpuBySpuId(Integer spuId);
 }

@@ -23,6 +23,26 @@
         id, title, sell_point, price, stock_count, image, status, create_time, update_time, spu_id, spec_name, option_name
     </sql>
 
+    <resultMap id="mapVo" type="com.four.d1708.shop.mangeserver.entity.ShopSkuVo" extends="BaseResultMap">
 
+    </resultMap>
+
+    <select id="findAll" resultMap="mapVo">
+        select
+            sku.*
+        from
+            shop_sku sku
+            <where>
+                <if test="shopSkuVo!=null">
+                    <if test="shopSkuVo.spuId!=null">
+                        and sku.spu_id=#{shopSkuVo.spuId}
+                    </if>
+                </if>
+            </where>
+    </select>
+
+    <select id="findSkuBySkuId" resultMap="mapVo">
+        select sku.* from shop_sku sku where sku.id=#{skuId}
+    </select>
 
 </mapper>
