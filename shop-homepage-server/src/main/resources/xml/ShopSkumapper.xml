@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.four.d1708.shop.homepage.server.mapper.ShopSkuVoMapper">
+
+<select id="pageInfo" resultType="com.four.d1708.shop.homepage.server.entity.ShopSkuVo">
+    SELECT
+	k.*,
+	GROUP_CONCAT( p.goods_name ) pname,
+	GROUP_CONCAT( p.small_pic ) ppic,
+	GROUP_CONCAT( c.`name` ) cname
+FROM
+	shop_sku k
+	LEFT JOIN shop_spu p ON k.spu_id = p.id
+	LEFT JOIN shop_category c ON p.category_id = c.id
+WHERE
+	p.is_marketable = 1
+	<if test="vo.title != null and vo.title !=''">
+		and  K.title like concat("%",#{vo.title},"%")
+	</if>
+	<if test="vo.cname != null and vo.cname!=''">
+		and  c.name=#{vo.cname}
+	</if>
+
+GROUP BY
+	k.id
+</select>
+
+	<select id="findOne" resultType="com.four.d1708.shop.homepage.server.entity.ShopSkuVo">
+	SELECT
+	k.*,
+	GROUP_CONCAT( p.goods_name ) pname,
+	GROUP_CONCAT( p.small_pic ) ppic,
+	GROUP_CONCAT( c.`name` ) cname
+	FROM
+	shop_sku k
+	LEFT JOIN shop_spu p ON k.spu_id = p.id
+	LEFT JOIN shop_category c ON p.category_id = c.id
+	WHERE k.id =3  and  p.is_marketable = 1 GROUP BY
+	k.id
+
+</select>
+
+	<select id="getList" resultType="com.four.d1708.shop.entityinterface.entity.ShopCategory">
+	select * from shop_category
+	</select>
+</mapper>
