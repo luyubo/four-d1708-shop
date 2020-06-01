@@ -1,6 +1,8 @@
 package com.four.d1708.shop.entityinterface.entity;
 
 import java.math.BigDecimal;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -43,6 +45,7 @@ public class ShopSku implements Serializable {
     /**
      * 商品卖点
      */
+    @TableField("sell_point")
     private String sell_point;
 
     /**
@@ -53,6 +56,7 @@ public class ShopSku implements Serializable {
     /**
      * 库存数量
      */
+    @TableField("stock_count")
     private Integer stock_count;
 
     /**
@@ -70,6 +74,7 @@ public class ShopSku implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField("create_time")
     private Date create_time;
 
     /**
@@ -77,21 +82,25 @@ public class ShopSku implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField("update_time")
     private Date update_time;
 
     /**
      * spu的id
      */
+    @TableField("spu_id")
     private Integer spu_id;
 
     /**
      * 商品属性
      */
+    @TableField("spec_name")
     private String spec_name;
 
     /**
      * 商品属性值
      */
+    @TableField("option_name")
     private String option_name;
 
     public Integer getId() {

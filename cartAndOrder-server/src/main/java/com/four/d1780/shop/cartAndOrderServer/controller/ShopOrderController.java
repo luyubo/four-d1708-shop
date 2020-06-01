@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-05-21
  */
 @RestController
-@RequestMapping("/hypermarket_order")
+@RequestMapping("/shop_order")
 public class ShopOrderController {
 
     @Autowired
@@ -28,13 +28,13 @@ public class ShopOrderController {
 
     /**
      * 根据用户uid生成订单
-     * @param shopOrder
+     * @param uid
      * @return
      */
-    @PostMapping("/generateOrder")
-    public ResultEntity generateOrder(@RequestBody ShopOrder shopOrder){
-
-        return ResultEntity.ok(shopOrderService.generateOrder(shopOrder));
+    @RequestMapping("/generateOrder")
+    public ResultEntity generateOrder(Integer uid){
+        System.err.println(uid);
+        return ResultEntity.ok(shopOrderService.generateOrder(uid));
     }
 
     /**

@@ -3,37 +3,50 @@
 <mapper namespace="com.four.d1780.shop.cartAndOrderServer.mapper.ShopCartMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.four.d1780.shop.cartAndOrderServer.entity.ShopCart">
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopCart">
         <id column="id" property="id" />
         <result column="uid" property="uid" />
         <result column="skuid" property="skuid" />
         <result column="pnum" property="pnum" />
         <result column="createtime" property="createtime" />
         <result column="updatetime" property="updatetime" />
-        <result column="sum_total" property="sumTotal" />
+        <result column="sum_total" property="sum_total" />
     </resultMap>
 
     <resultMap id="BaseResultMapVo" type="com.four.d1780.shop.cartAndOrderServer.entity.ShopCartVo" extends="BaseResultMap" >
         <result column="skid" property="skid" />
         <result column="title" property="title" />
-        <result column="sell_point" property="sellPoint" />
+        <result column="sell_point" property="sell_point" />
         <result column="price" property="price" />
         <result column="image" property="image" />
+        <result column="amount" property="amount" />
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, uid, skuid, pnum, createtime, updatetime, sum_total
     </sql>
 
+    <select id="selectByUid" resultMap="BaseResultMap">
+        SELECT a.* FROM shop_cart a WHERE a.uid=#{uid}
+    </select>
+
+    <select id="findPnumAndSumTotalByCaridAndSkuId" resultMap="BaseResultMap">
+        SELECT SUM(a.amount) pnum,SUM(a.price*a.amount) sum_total FROM shop_cartdetail a  WHERE a.`cartId`=#{cartId} GROUP BY a.cartId
+    </select>
     <select id="findAllByUid" resultMap="BaseResultMapVo">
 
          SELECT
           a.*,
-          b.id skid,b.`title`,b.`sell_point`,b.`image`,b.price
+          b.skuid skid,
+          b.title,
+          b.sell_point,
+          b.price,
+          b.image,
+          b.amount
         FROM
           shop_cart a
-          LEFT JOIN shop_sku b
-            ON a.`skuid` = b.`id`
+          LEFT JOIN shop_cartdetail b
+            ON a.`id` = b.cartId
         WHERE a.uid =#{uid}
     </select>
 

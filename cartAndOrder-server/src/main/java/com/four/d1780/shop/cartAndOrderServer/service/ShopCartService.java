@@ -1,7 +1,7 @@
 package com.four.d1780.shop.cartAndOrderServer.service;
 
-import com.four.d1780.shop.cartAndOrderServer.entity.ShopCart;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.four.d1708.shop.entityinterface.entity.ShopCart;
 import com.four.d1780.shop.cartAndOrderServer.entity.ShopCartVo;
 
 import java.util.List;
@@ -18,9 +18,13 @@ public interface ShopCartService extends IService<ShopCart> {
 
     List<ShopCartVo> findAllByUid(Integer uid);
 
-    int deleteById(Integer id);
+    int deleteById(Integer skid,Integer uid);
 
     int deleteByUid(Integer uid);
 
     int generateOrder(Integer uid);
+
+    int addCart(Integer uid, Integer skuid);
+
+    int modifiedAmountBySkidAndUid(Integer skid, Integer uid,Integer amount);
 }

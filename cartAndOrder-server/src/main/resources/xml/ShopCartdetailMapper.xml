@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.four.d1780.shop.cartAndOrderServer.mapper.ShopCartdetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopCartdetail">
+        <id column="id" property="id" />
+        <result column="cartId" property="cartId" />
+        <result column="skuid" property="skuid" />
+        <result column="title" property="title" />
+        <result column="sell_point" property="sell_point" />
+        <result column="price" property="price" />
+        <result column="stock_count" property="stock_count" />
+        <result column="image" property="image" />
+        <result column="state" property="state" />
+        <result column="create_time" property="create_time" />
+        <result column="update_time" property="update_time" />
+        <result column="spu_id" property="spu_id" />
+        <result column="amount" property="amount" />
+        <result column="addrId" property="addrId" />
+    </resultMap>
+
+
+    <select id="fandBySkuId" resultMap="BaseResultMap">
+        SELECT a.* FROM shop_cartdetail a WHERE a.cartId=#{cartId} AND a.skuid=#{skuid}
+    </select>
+
+    <select id="findAllByUid" resultMap="BaseResultMap">
+        SELECT a.* FROM shop_cartdetail a WHERE a.cartId=#{cartId}
+    </select>
+
+    <select id="findAllByCartId" resultMap="BaseResultMap">
+        SELECT a.* FROM shop_cartdetail a WHERE a.cartId=#{cartId}
+    </select>
+</mapper>

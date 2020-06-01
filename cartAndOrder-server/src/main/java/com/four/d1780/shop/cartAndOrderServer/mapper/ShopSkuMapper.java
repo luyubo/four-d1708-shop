@@ -1,7 +1,8 @@
 package com.four.d1780.shop.cartAndOrderServer.mapper;
 
-import com.four.d1780.shop.cartAndOrderServer.entity.ShopSku;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.four.d1708.shop.entityinterface.entity.ShopSku;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -13,4 +14,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ShopSkuMapper extends BaseMapper<ShopSku> {
 
+//    @Select("SELECT a.* FROM shop_sku a WHERE a.id=#{skuid}")
+    ShopSku fandBySkuId(Integer skuid);
 }

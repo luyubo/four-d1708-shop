@@ -3,7 +3,7 @@
 <mapper namespace="com.four.d1780.shop.cartAndOrderServer.mapper.ShopSkuMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.four.d1780.shop.cartAndOrderServer.entity.ShopSku">
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopSku">
         <id column="id" property="id" />
         <result column="title" property="title" />
         <result column="sell_point" property="sell_point" />
@@ -14,6 +14,8 @@
         <result column="create_time" property="create_time" />
         <result column="update_time" property="update_time" />
         <result column="spu_id" property="spu_id" />
+        <result column="spec_name" property="spec_name" />
+        <result column="option_name" property="option_name" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -21,4 +23,7 @@
         id, title, sell_point, price, stock_count, image, status, create_time, update_time, spu_id
     </sql>
 
+    <select id="fandBySkuId" resultMap="BaseResultMap">
+        SELECT a.* FROM shop_sku a WHERE a.id=#{skuid}
+    </select>
 </mapper>

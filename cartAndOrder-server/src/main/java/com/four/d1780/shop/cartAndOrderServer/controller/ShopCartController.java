@@ -6,6 +6,7 @@ import com.four.d1780.shop.cartAndOrderServer.vo.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,14 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-05-21
  */
 @RestController
-@RequestMapping("/hypermarket_cart")
+@RequestMapping("/shop_cart")
 public class ShopCartController {
 
     @Autowired
     ShopCartService shopCartService;
 
     /**
-     * 根据用户id查找对应的购物车明细
+     * 添加购物车
+     * @param uid
+     * @param skuid
+     * @return
+     */
+    @RequestMapping("/addCart")
+    public ResultEntity addCart(Integer uid,Integer skuid){
+        int i = shopCartService.addCart(uid, skuid);
+        return  ResultEntity.ok("uid用户"+uid+",商品id为"+skuid+",添加购物车成功");
+    }
+
+    /**
+     * 根据用户id查找对应的购物车明细 列表功能
      * @param uid
      * @return
      */
@@ -36,14 +49,26 @@ public class ShopCartController {
 
     /**
      * 删除购物车的单个数据
-     * @param id
+     * @param skid
      * @return
      */
     @RequestMapping("/deleteById")
-    public ResultEntity deleteById(Integer id){
-        return  ResultEntity.ok(shopCartService.deleteById(id));
+    public ResultEntity deleteById(@RequestParam("skid") Integer skid,@RequestParam("uid") Integer uid){
+        System.err.println(skid+"|"+uid);
+        return  ResultEntity.ok(shopCartService.deleteById(skid,uid));
     }
 
+    /**
+     * 修改商品个数
+     * @param skid
+     * @param uid
+     * @param amount
+     * @return
+     */
+    @RequestMapping("/modifiedAmountBySkidAndUid")
+    public ResultEntity modifiedAmountBySkidAndUid(Integer skid,Integer uid,Integer amount){
+        return  ResultEntity.ok(shopCartService.modifiedAmountBySkidAndUid(skid,uid,amount));
+    }
     /**
      * 根据用户uid删除购物车
      * @param uid

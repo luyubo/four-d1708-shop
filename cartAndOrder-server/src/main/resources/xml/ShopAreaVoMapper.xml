@@ -27,10 +27,10 @@
           b.`id` bid ,b.name bname,
           c.id cid ,c.`name` cname
         FROM
-          hypermarket_area a
-          LEFT JOIN hypermarket_area b
+          shop_area a
+          LEFT JOIN shop_area b
             ON a.`id` = b.`pid`
-          LEFT JOIN hypermarket_area c
+          LEFT JOIN shop_area c
             ON b.`id` = c.`pid`
         WHERE a.`pid` = 1
     </select>
