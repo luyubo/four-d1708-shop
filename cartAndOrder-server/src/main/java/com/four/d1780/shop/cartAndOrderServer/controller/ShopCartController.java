@@ -42,7 +42,7 @@ public class ShopCartController {
      * @return
      */
     @RequestMapping("/findAllByUid")
-    public ResultEntity findAll(Integer uid){
+    public ResultEntity findAll(@RequestParam("uid") Integer uid){
         return  ResultEntity.ok(shopCartService.findAllByUid(uid));
     }
 

@@ -47,7 +47,7 @@
           shop_cart a
           LEFT JOIN shop_cartdetail b
             ON a.`id` = b.cartId
-        WHERE a.uid =#{uid}
+        WHERE a.uid =#{uid} and b.state=1
     </select>
 
 </mapper>

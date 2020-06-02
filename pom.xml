@@ -13,6 +13,7 @@
         <module>cartAndOrder-server</module>
 
         <module>shop-homepage-server</module>
+        <module>user-server</module>
 
     </modules>
     <!--继承spring boot项目-->

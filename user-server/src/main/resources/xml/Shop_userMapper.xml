@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.four.d1708.shop.userserver.mapper.Shop_userMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopUser">
+        <id column="uid" property="uid" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="name" property="name" />
+        <result column="email" property="email" />
+        <result column="telephone" property="telephone" />
+        <result column="birthday" property="birthday" />
+        <result column="sex" property="sex" />
+        <result column="state" property="state" />
+        <result column="user_image" property="user_image" />
+        <result column="address" property="address" />
+        <result column="member_state" property="member_state" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        uid, username, password, name, email, telephone, birthday, sex, state, user_image, address
+    </sql>
+
+    <resultMap id="mapVo" type="com.four.d1708.shop.userserver.entity.ShopUserVo" extends="BaseResultMap">
+
+    </resultMap>
+
+    <select id="findByNameAndPassword" resultMap="mapVo">
+        select user.* from shop_user user where user.username=#{name} and password=#{password}
+    </select>
+</mapper>

@@ -17,7 +17,7 @@
         <result column="update_time" property="update_time" />
         <result column="spu_id" property="spu_id" />
         <result column="amount" property="amount" />
-        <result column="addrId" property="addrId" />
+        <result column="addrId" property="addr_id" />
     </resultMap>
 
 
