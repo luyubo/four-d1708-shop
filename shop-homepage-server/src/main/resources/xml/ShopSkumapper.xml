@@ -2,6 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.four.d1708.shop.homepage.server.mapper.ShopSkuVoMapper">
 
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopSku">
+		<id column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="sell_point" property="sell_point" />
+		<result column="price" property="price" />
+		<result column="stock_count" property="stock_count" />
+		<result column="image" property="image" />
+		<result column="status" property="status" />
+		<result column="create_time" property="create_time" />
+		<result column="update_time" property="update_time" />
+		<result column="spu_id" property="spu_id" />
+		<result column="spec_name" property="spec_name" />
+		<result column="option_name" property="option_name" />
+	</resultMap>
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+        id, title, sell_point, price, stock_count, image, status, create_time, update_time, spu_id, spec_name, option_name
+    </sql>
+
 <select id="pageInfo" resultType="com.four.d1708.shop.homepage.server.entity.ShopSkuVo">
     SELECT
 	k.*,
@@ -25,7 +46,11 @@ GROUP BY
 	k.id
 </select>
 
-	<select id="findOne" resultType="com.four.d1708.shop.homepage.server.entity.ShopSkuVo">
+	<resultMap id="mapVo" type="com.four.d1708.shop.homepage.server.entity.ShopSkuVo" extends="BaseResultMap">
+
+	</resultMap>
+
+	<select id="findOne" resultMap="mapVo">
 	SELECT
 	k.*,
 	GROUP_CONCAT( p.goods_name ) pname,
@@ -35,7 +60,7 @@ GROUP BY
 	shop_sku k
 	LEFT JOIN shop_spu p ON k.spu_id = p.id
 	LEFT JOIN shop_category c ON p.category_id = c.id
-	WHERE k.id =3  and  p.is_marketable = 1 GROUP BY
+	WHERE k.id=#{id}  and  p.is_marketable = 1 GROUP BY
 	k.id
 
 </select>
