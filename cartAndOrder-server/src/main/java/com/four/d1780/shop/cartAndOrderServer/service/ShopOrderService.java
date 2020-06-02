@@ -9,5 +9,5 @@ public interface ShopOrderService {
 
     List<ShopOrderVo> findAll(Integer uid);
 
-    int generateOrder(ShopOrder shopOrder);
+    int generateOrder(Integer uid);
 }

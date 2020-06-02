@@ -3,7 +3,6 @@ package com.four.d1780.shop.cartAndOrderServer.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-05-21
  */
 @RestController
-@RequestMapping("/hypermarket_sku")
+@RequestMapping("/shop_sku")
 public class ShopSkuController {
 
 }

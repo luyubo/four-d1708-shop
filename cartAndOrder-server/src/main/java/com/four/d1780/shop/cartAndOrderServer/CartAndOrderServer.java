@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@EnableScheduling
+//@EnableScheduling
 @SpringBootApplication
 @EnableEurekaClient
 @MapperScan("com.four.d1780.shop.cartAndOrderServer.mapper")

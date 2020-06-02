@@ -1,6 +1,7 @@
 package com.four.d1780.shop.cartAndOrderServer.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.four.d1708.shop.entityinterface.entity.ShopCart;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,7 +24,7 @@ public class ShopCartVo extends ShopCart implements Serializable {
      * 商品卖点
      */
     @TableField("sell_point")
-    private String sellPoint;
+    private String sell_point;
 
     /**
      * 商品价格，单位为：元
@@ -35,5 +36,10 @@ public class ShopCartVo extends ShopCart implements Serializable {
      */
     private String image;
 
+
+    /**
+     * 商品数量
+     */
+    private int amount;
 
 }

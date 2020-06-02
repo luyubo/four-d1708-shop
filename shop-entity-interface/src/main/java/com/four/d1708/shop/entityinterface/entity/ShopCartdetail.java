@@ -1,6 +1,7 @@
 package com.four.d1708.shop.entityinterface.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -38,6 +39,7 @@ public class ShopCartdetail implements Serializable {
     /**
      * 购物车表
      */
+    @TableField("cartId")
     private Integer cartId;
 
     /**

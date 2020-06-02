@@ -1,7 +1,7 @@
 package com.four.d1780.shop.cartAndOrderServer.service;
 
-import com.four.d1780.shop.cartAndOrderServer.entity.ShopSku;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.four.d1708.shop.entityinterface.entity.ShopSku;
 
 /**
  * <p>
