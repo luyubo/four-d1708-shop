@@ -19,4 +19,18 @@
         id, uid, account_num, password, money, state
     </sql>
 
+    <resultMap id="mapVo" type="com.four.d1708.shop.userserver.entity.ShopPayVo" extends="BaseResultMap">
+
+    </resultMap>
+
+    <select id="findPayByUid" resultMap="mapVo">
+        select pay.* from shop_pay pay where pay.uid=#{uid}
+    </select>
+
+    <select id="getPayByAmountNumAndPassword" resultMap="mapVo">
+        select pay.* from shop_pay pay
+        <where>
+            pay.account_num=#{account_num} and password=#{password}
+        </where>
+    </select>
 </mapper>

@@ -17,6 +17,8 @@ import java.util.List;
 public interface IShop_userService extends IService<ShopUser> {
     ShopUserVo findByNameAndPassword(String name, String password);
 
+    boolean toMange(ShopUser shopUser);
+
 
     // List<Shop_user> findByNameAndPassword(Shop_user shop_user);
 

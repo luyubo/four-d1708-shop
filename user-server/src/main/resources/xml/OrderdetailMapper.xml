@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.four.d1708.shop.userserver.mapper.OrderdetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopOrderdetail">
+        <id column="id" property="id" />
+        <result column="order_id" property="order_id" />
+        <result column="sku_id" property="sku_id" />
+        <result column="title" property="title" />
+        <result column="sell_point" property="sell_point" />
+        <result column="price" property="price" />
+        <result column="stock_count" property="stock_count" />
+        <result column="image" property="image" />
+        <result column="state" property="state" />
+        <result column="create_time" property="create_time" />
+        <result column="update_time" property="update_time" />
+        <result column="spu_id" property="spu_id" />
+        <result column="amount" property="amount" />
+        <result column="addr_id" property="addr_id" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_id, sku_id, title, sell_point, price, stock_count, image, state, create_time, update_time, spu_id, amount, addr_id
+    </sql>
+
+    <resultMap id="mapVo" type="com.four.d1708.shop.userserver.entity.ShopOrderdetailVo" extends="BaseResultMap">
+
+    </resultMap>
+
+    <select id="findByOrderId" resultMap="mapVo">
+        select orderdetail.* from shop_orderdetail orderdetail where orderdetail.order_id=#{oid} and orderdetail.state=1
+    </select>
+</mapper>

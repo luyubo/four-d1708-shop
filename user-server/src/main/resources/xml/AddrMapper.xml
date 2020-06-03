@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.four.d1708.shop.userserver.mapper.AddrMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopAddr">
+        <id column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="province_id" property="province_id" />
+        <result column="city_id" property="city_id" />
+        <result column="country_id" property="country_id" />
+        <result column="address" property="address" />
+        <result column="state" property="state" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, uid, province_id, city_id, country_id, address, state
+    </sql>
+
+    <resultMap id="mapVo" type="com.four.d1708.shop.userserver.entity.ShopAddrVo" extends="BaseResultMap">
+        <result column="pname" property="pname"></result>
+        <result column="cname" property="cname"></result>
+        <result column="coname" property="coname"></result>
+    </resultMap>
+
+    <select id="findAddrByUid" resultMap="mapVo">
+        SELECT
+            addr.*,
+            p.name pname,
+          c.name cname,
+          co.name coname
+        FROM
+            shop_addr addr
+        LEFT JOIN
+            shop_area p
+        ON addr.province_id=p.id
+        LEFT JOIN
+            shop_area c
+        ON addr.city_id=c.id
+        LEFT JOIN
+            shop_area co
+        ON addr.country_id=co.id
+        <where>
+            addr.uid=#{uid} and addr.state!=2
+        </where>
+    </select>
+</mapper>

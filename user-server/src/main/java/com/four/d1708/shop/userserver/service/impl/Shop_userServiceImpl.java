@@ -28,6 +28,17 @@ public class Shop_userServiceImpl extends ServiceImpl<Shop_userMapper, ShopUser>
         return shop_userMapper.findByNameAndPassword(name,password);
     }
 
+    @Override
+    public boolean toMange(ShopUser shopUser) {
+        ShopUserVo byNameAndPassword = shop_userMapper.findByNameAndPassword(shopUser.getUsername(), shopUser.getPassword());
+        byNameAndPassword.setState(3);
+        int i = shop_userMapper.updateById(byNameAndPassword);
+        if(i>0){
+            return true;
+        }
+        return false;
+    }
+
 /*    @Resource
     Shop_userMapper shop_userMapper;
 
