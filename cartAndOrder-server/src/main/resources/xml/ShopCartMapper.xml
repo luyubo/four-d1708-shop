@@ -20,6 +20,7 @@
         <result column="price" property="price" />
         <result column="image" property="image" />
         <result column="amount" property="amount" />
+        <result column="cid" property="cid" />
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
@@ -42,7 +43,8 @@
           b.sell_point,
           b.price,
           b.image,
-          b.amount
+          b.amount,
+          b.id cid
         FROM
           shop_cart a
           LEFT JOIN shop_cartdetail b
@@ -50,4 +52,20 @@
         WHERE a.uid =#{uid} and b.state=1
     </select>
 
+    <select id="selectByCartId" resultMap="BaseResultMapVo">
+        SELECT
+          a.*,
+          b.skuid skid,
+          b.title,
+          b.sell_point,
+          b.price,
+          b.image,
+          b.amount
+        FROM
+          shop_cart a
+          LEFT JOIN shop_cartdetail b
+            ON a.`id` = b.cartId
+        WHERE a.id=#{cartId} and b.state=1
+        group by a.id
+    </select>
 </mapper>

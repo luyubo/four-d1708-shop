@@ -3,10 +3,13 @@ package com.four.d1780.shop.cartAndOrderServer.service.impl;
 import com.four.d1708.shop.entityinterface.entity.ShopCart;
 import com.four.d1708.shop.entityinterface.entity.ShopCartdetail;
 import com.four.d1708.shop.entityinterface.entity.ShopSku;
+import com.four.d1780.shop.cartAndOrderServer.entity.ShopAddrVo;
 import com.four.d1780.shop.cartAndOrderServer.entity.ShopCartVo;
+import com.four.d1780.shop.cartAndOrderServer.entity.ShopSkuVo;
 import com.four.d1780.shop.cartAndOrderServer.mapper.ShopCartMapper;
 import com.four.d1780.shop.cartAndOrderServer.mapper.ShopCartdetailMapper;
 import com.four.d1780.shop.cartAndOrderServer.mapper.ShopSkuMapper;
+import com.four.d1780.shop.cartAndOrderServer.service.IAddrService;
 import com.four.d1780.shop.cartAndOrderServer.service.ShopCartService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +35,10 @@ public class ShopCartServiceImpl extends ServiceImpl<ShopCartMapper, ShopCart> i
     ShopCartMapper shopCartMapper;
 
     @Autowired
-    ShopSkuMapper shopSkuMapper;
+    private ShopSkuMapper shopSkuMapper;
+
+    @Autowired
+    private IAddrService iAddrService;
 
     @Autowired
     ShopCartdetailMapper shopCartdetailMapper;
@@ -110,8 +116,11 @@ public class ShopCartServiceImpl extends ServiceImpl<ShopCartMapper, ShopCart> i
 
     @Transactional
     @Override
-    public int modifiedAmountBySkidAndUid(Integer skid, Integer uid,Integer amount) {
-        ShopCart sc = shopCartMapper.selectByUid(uid);
+    public int modifiedAmountBySkidAndUid(Integer skid, Integer uid,Integer amount,Integer cartId) {
+        //这里不要用uid查
+        //ShopCart sc = shopCartMapper.selectByUid(uid);
+        ShopCartVo sc = shopCartMapper.selectByCartId(cartId);
+
         int i = shopCartdetailMapper.modifiedAmountBySkidAndUid(skid,sc.getId(),amount);
         //查找订单数量和总金额
         ShopCart shopCart1 = shopCartMapper.findPnumAndSumTotalByCaridAndSkuId(sc.getId(),skid);
@@ -120,6 +129,37 @@ public class ShopCartServiceImpl extends ServiceImpl<ShopCartMapper, ShopCart> i
         sc.setUpdatetime(new Date());
         shopCartMapper.updateById(sc);
         return i;
+    }
+
+    @Override
+    public boolean addCartAndDetail(ShopCart shopCart) {
+        shopCart.setCreatetime(new Date());
+        shopCart.setUpdatetime(new Date());
+        ShopSkuVo shopSku = shopSkuMapper.selectSkuById(shopCart.getSkuid());
+        int insert = shopCartMapper.insert(shopCart);
+        if(insert>0){
+            ShopCartdetail shopCartdetail=new ShopCartdetail();
+            shopCartdetail.setCartId(shopCart.getId());
+            shopCartdetail.setSkuid(shopSku.getId());
+            shopCartdetail.setTitle(shopSku.getTitle());
+            shopCartdetail.setSell_point("最新添加到购物车的sku信息");
+            shopCartdetail.setPrice(shopCart.getSum_total());
+            shopCartdetail.setStock_count(Integer.parseInt(shopCart.getPnum().toString()));
+            shopCartdetail.setImage(shopSku.getImage());
+            shopCartdetail.setState(1);
+            shopCartdetail.setCreate_time(new Date());
+            shopCartdetail.setUpdate_time(new Date());
+            shopCartdetail.setSpu_id(shopSku.getSpu_id());
+            shopCartdetail.setAmount(Integer.parseInt(shopCart.getPnum().toString()));
+            List<ShopAddrVo> shopAddrVoList=iAddrService.findByUid(shopCart.getUid());
+            for (ShopAddrVo shopAddrVo : shopAddrVoList) {
+                if(shopAddrVo.getState()==1){
+                    shopCartdetail.setAddrId(shopAddrVo.getId());
+                }
+            }
+            shopCartdetailMapper.insert(shopCartdetail);
+        }
+        return true;
     }
 
     //查找购物车列表

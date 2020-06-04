@@ -16,7 +16,7 @@ public interface ShopAreaMapper extends BaseMapper<ShopArea> {
     @Update("UPDATE shop_addr a SET state=1 WHERE a.`id`=#{addrId}  AND a.uid=#{uid}")
     int updateAddrStateByUidAndAddrId(@Param("uid") Integer uid, @Param("addrId")Integer addrId);
 
-//    @Select("SELECT a.* FROM shop_addr a WHERE a.`id`=#{addrId}  AND a.uid=#{uid}")
+    @Select("SELECT a.* FROM shop_addr a WHERE a.`id`=#{addrId}  AND a.uid=#{uid}")
     List<ShopAddr> findByUidAndAddrId(Integer uid);
 
     @Update("UPDATE shop_addr a SET state=0 WHERE a.`id`=#{addrId}  AND a.uid=#{uid}")

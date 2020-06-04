@@ -42,4 +42,6 @@ public class ShopCartVo extends ShopCart implements Serializable {
      */
     private int amount;
 
+    private Integer cid;
+
 }

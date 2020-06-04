@@ -2,6 +2,7 @@ package com.four.d1780.shop.cartAndOrderServer.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.four.d1708.shop.entityinterface.entity.ShopCart;
+import com.four.d1708.shop.entityinterface.entity.ShopSku;
 import com.four.d1780.shop.cartAndOrderServer.entity.ShopCartVo;
 
 import java.util.List;
@@ -26,5 +27,7 @@ public interface ShopCartService extends IService<ShopCart> {
 
     int addCart(Integer uid, Integer skuid);
 
-    int modifiedAmountBySkidAndUid(Integer skid, Integer uid,Integer amount);
+    int modifiedAmountBySkidAndUid(Integer skid, Integer uid,Integer amount,Integer cartId);
+
+    boolean addCartAndDetail(ShopCart shopCart);
 }

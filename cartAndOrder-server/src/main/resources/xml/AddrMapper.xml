@@ -18,8 +18,16 @@
         id, uid, province_id, city_id, country_id, address, state
     </sql>
 
-    <select id="getByUid" resultType="com.four.d1780.shop.cartAndOrderServer.entity.ShopAddrVo">
-        select * from shop_addr where uid=#{uid} and state!=0
+    <select id="getByUid" resultMap="mapVo">
+        select addr.* from shop_addr addr where addr.uid=#{uid} and addr.state!=2
+    </select>
+
+    <resultMap id="mapVo" type="com.four.d1780.shop.cartAndOrderServer.entity.ShopAddrVo" extends="BaseResultMap">
+
+    </resultMap>
+
+    <select id="findByUid" resultMap="mapVo">
+        select addr.* from shop_addr addr where addr.uid=#{uid} and addr.state!=2
     </select>
 
 </mapper>

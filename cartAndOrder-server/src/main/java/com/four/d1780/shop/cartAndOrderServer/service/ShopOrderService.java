@@ -9,5 +9,7 @@ public interface ShopOrderService {
 
     List<ShopOrderVo> findAll(Integer uid);
 
-    int generateOrder(Integer uid);
+    int generateOrder(Integer uid,String cids);
+
+    boolean saveOrder(ShopOrder shopOrder);
 }

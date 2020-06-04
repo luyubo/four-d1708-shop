@@ -1,13 +1,12 @@
 package com.four.d1780.shop.cartAndOrderServer.controller;
 
 
+import com.four.d1708.shop.entityinterface.entity.ShopCart;
+import com.four.d1708.shop.entityinterface.entity.ShopSku;
 import com.four.d1780.shop.cartAndOrderServer.service.ShopCartService;
 import com.four.d1780.shop.cartAndOrderServer.vo.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -34,6 +33,11 @@ public class ShopCartController {
     public ResultEntity addCart(Integer uid,Integer skuid){
         int i = shopCartService.addCart(uid, skuid);
         return  ResultEntity.ok("uid用户"+uid+",商品id为"+skuid+",添加购物车成功");
+    }
+
+    @PostMapping("/addCartAndDetail")
+    public boolean addCartAndDetail(@RequestBody ShopCart shopCart){
+        return shopCartService.addCartAndDetail(shopCart);
     }
 
     /**
@@ -66,8 +70,8 @@ public class ShopCartController {
      * @return
      */
     @RequestMapping("/modifiedAmountBySkidAndUid")
-    public ResultEntity modifiedAmountBySkidAndUid(Integer skid,Integer uid,Integer amount){
-        return  ResultEntity.ok(shopCartService.modifiedAmountBySkidAndUid(skid,uid,amount));
+    public ResultEntity modifiedAmountBySkidAndUid(Integer skid,Integer uid,Integer amount,Integer cartId){
+        return  ResultEntity.ok(shopCartService.modifiedAmountBySkidAndUid(skid,uid,amount,cartId));
     }
     /**
      * 根据用户uid删除购物车

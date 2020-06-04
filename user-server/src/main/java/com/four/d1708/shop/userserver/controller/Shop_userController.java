@@ -140,7 +140,8 @@ public class Shop_userController {
     @PostMapping("/savePay")
     public boolean savePay(@RequestBody ShopPay shopPay){
         shopPay.setState("1");
-        Md5Util.string2MD5(shopPay.getPassword());
+        String s = Md5Util.string2MD5(shopPay.getPassword());
+        shopPay.setPassword(s);
         return iShop_payService.save(shopPay);
     }
 

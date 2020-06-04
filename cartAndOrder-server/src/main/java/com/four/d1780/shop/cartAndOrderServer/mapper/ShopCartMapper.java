@@ -34,4 +34,5 @@ public interface ShopCartMapper extends BaseMapper<ShopCart> {
     int updateByCartIdAndSkuId(@Param("cartId") Integer cartId, @Param("skuid")Integer skuid);
 
 
+    ShopCartVo selectByCartId(Integer cartId);
 }

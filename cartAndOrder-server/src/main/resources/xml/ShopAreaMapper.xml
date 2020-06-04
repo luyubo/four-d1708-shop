@@ -38,7 +38,7 @@
             ON a.city_id = c.`id`
           LEFT JOIN shop_area d
             ON a.country_id = d.`id`
-        WHERE uid = #{uid}
+        WHERE uid = #{uid} and a.state!=2
     </select>
 
 </mapper>

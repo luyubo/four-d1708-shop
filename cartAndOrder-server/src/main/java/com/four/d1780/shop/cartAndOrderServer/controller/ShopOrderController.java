@@ -6,10 +6,7 @@ import com.four.d1780.shop.cartAndOrderServer.service.ShopOrderService;
 import com.four.d1780.shop.cartAndOrderServer.service.impl.ShopOrderServiceImpl;
 import com.four.d1780.shop.cartAndOrderServer.vo.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -32,9 +29,8 @@ public class ShopOrderController {
      * @return
      */
     @RequestMapping("/generateOrder")
-    public ResultEntity generateOrder(Integer uid){
-        System.err.println(uid);
-        return ResultEntity.ok(shopOrderService.generateOrder(uid));
+    public ResultEntity generateOrder(Integer uid,String cids){
+        return ResultEntity.ok(shopOrderService.generateOrder(uid,cids));
     }
 
     /**
@@ -48,6 +44,9 @@ public class ShopOrderController {
     }
 
 
-
+    @RequestMapping("/saveOrder")
+    public boolean saveOrder(@RequestBody ShopOrder shopOrder){
+        return shopOrderService.saveOrder(shopOrder);
+    }
 }
 

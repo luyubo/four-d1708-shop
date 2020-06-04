@@ -17,4 +17,6 @@ import java.util.List;
 public interface AddrMapper extends BaseMapper<ShopAddr> {
 
     List<ShopAddrVo> getByUid(Integer uid);
+
+    List<ShopAddrVo> findByUid(String uid);
 }

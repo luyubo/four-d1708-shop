@@ -23,7 +23,19 @@
         id, title, sell_point, price, stock_count, image, status, create_time, update_time, spu_id
     </sql>
 
+    <resultMap id="mapVo" type="com.four.d1780.shop.cartAndOrderServer.entity.ShopSkuVo" extends="BaseResultMap">
+
+    </resultMap>
+
     <select id="fandBySkuId" resultMap="BaseResultMap">
         SELECT a.* FROM shop_sku a WHERE a.id=#{skuid}
+    </select>
+
+    <select id="selectSkuById" resultMap="mapVo">
+        SELECT a.* FROM shop_sku a WHERE a.id=#{skuid}
+    </select>
+
+    <select id="selectSkuBySkuId" resultMap="mapVo">
+        select sku.* from shop_sku sku where sku.id=#{skuid}
     </select>
 </mapper>

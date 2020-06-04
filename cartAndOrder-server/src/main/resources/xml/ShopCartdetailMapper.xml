@@ -32,4 +32,16 @@
     <select id="findAllByCartId" resultMap="BaseResultMap">
         SELECT a.* FROM shop_cartdetail a WHERE a.cartId=#{cartId}
     </select>
+
+    <resultMap id="mapVo" type="com.four.d1780.shop.cartAndOrderServer.entity.ShopCartDetailVo" extends="BaseResultMap">
+
+    </resultMap>
+
+    <select id="selectVoById" resultMap="mapVo">
+        select a.* from shop_cartdetail a where a.id=#{id} and a.state=1
+    </select>
+
+    <update id="updateCartDetail">
+        update shop_cartdetail set shop_cartdetail.state=#{state} where shop_cartdetail.id=#{id}
+    </update>
 </mapper>

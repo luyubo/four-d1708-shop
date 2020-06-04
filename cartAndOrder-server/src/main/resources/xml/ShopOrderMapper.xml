@@ -33,7 +33,6 @@
           LEFT JOIN shop_sku b
             ON a.`skuid` = b.`id`
         WHERE a.uid = #{uid}
-
     </select>
 
     <update id="updateByCreateTime">

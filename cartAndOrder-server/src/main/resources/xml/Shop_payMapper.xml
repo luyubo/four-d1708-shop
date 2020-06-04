@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.four.d1780.shop.cartAndOrderServer.mapper.Shop_payMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.four.d1708.shop.entityinterface.entity.ShopPay">
+        <id column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="account_num" property="account_num" />
+        <result column="password" property="password" />
+        <result column="money" property="money" />
+        <result column="state" property="state" />
+
+
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, uid, account_num, password, money, state
+    </sql>
+
+    <resultMap id="mapVo" type="com.four.d1780.shop.cartAndOrderServer.entity.ShopPayVo" extends="BaseResultMap">
+
+    </resultMap>
+
+    <select id="findByUid" resultMap="mapVo">
+        select pay.* from shop_pay pay where pay.uid=#{uid} and state=1
+    </select>
+</mapper>
